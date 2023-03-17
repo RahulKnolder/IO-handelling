@@ -156,7 +156,7 @@ public class FileManipulation {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
 
         Scanner readValues = new Scanner(System.in);
 
