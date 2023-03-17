@@ -13,7 +13,7 @@ public class FileManipulation {
         File file = new File(fileName);
         // Check if the file already exists
         if (file.exists()) {
-            System.out.println("File already exists!");
+            System.out.println("File already exists! and will over ride the data");
         } else {
             System.out.println("file create");
         }
@@ -32,7 +32,7 @@ public class FileManipulation {
     }
 
 
-    //write a file method
+    //write the data to the file by taking input from the user
     static void writeFile(String fileName) {
 
         createFile(fileName);
@@ -45,24 +45,23 @@ public class FileManipulation {
             throw new RuntimeException(e);
         }
 
-
         Scanner write = new Scanner(System.in);
-        System.out.println("Please enter the number of");
+        System.out.println("Please enter the number of entries");
         int numberOfIntries = write.nextInt();
 
-        String[][] arr = new String[numberOfIntries][2];
+        String[][] entries = new String[numberOfIntries][2];
         write.nextLine();
 
         //logic to take input in the array
         for (int indexOfRow = 0; indexOfRow < numberOfIntries; indexOfRow++) {
             for (int indexOfColoumn = 0; indexOfColoumn < 2; indexOfColoumn++) {
-                int indexCount=indexOfRow;
+                int indexCount = indexOfRow;
                 if (indexOfColoumn == 0) {
-                    System.out.println("enter name for " + (indexCount+1) + " entery");
+                    System.out.println("enter name for " + (indexCount + 1) + " entery");
                 } else {
-                    System.out.println("enter age for "+(indexCount+1)+ " entry");
+                    System.out.println("enter age for " + (indexCount + 1) + " entry");
                 }
-                arr[indexOfRow][indexOfColoumn] = write.nextLine();
+                entries[indexOfRow][indexOfColoumn] = write.nextLine();
             }
         }
 
@@ -71,7 +70,7 @@ public class FileManipulation {
 
             for (int indexOfColoumn = 0; indexOfColoumn < 2; indexOfColoumn++) {
                 try {
-                    fileWriter.write(arr[indexOfRow][indexOfColoumn]);
+                    fileWriter.write(entries[indexOfRow][indexOfColoumn]);
 
                     if (indexOfColoumn != numberOfIntries - 1) { // Don't print comma after last element in row
                         fileWriter.write(", ");
@@ -131,7 +130,7 @@ public class FileManipulation {
 
 
     //modifying and Writite in other file
-    static void writeInotherfile(String readfile, String writeFile) {
+    static void writeInOtherfile(String readfile, String writeFile) {
 
         //invoking create file method
         createFile(writeFile);
@@ -146,7 +145,7 @@ public class FileManipulation {
             //logic to store in file output file after manipulation
             while ((line = bufferedReader.readLine()) != null) {
                 line = line.replaceAll(",", "(");
-                line= line.replaceAll(" ","");
+                line = line.replaceAll(" ", "");
                 line = line.concat(")");
                 fileWriter.write(line + "\n");
             }
@@ -155,7 +154,6 @@ public class FileManipulation {
             System.out.println(catchException + "\n");
         }
     }
-
 
 
     public static void main(String[] args) throws IOException {
@@ -175,7 +173,7 @@ public class FileManipulation {
         String outputFile = readValues.nextLine();
 
         //Writing in another other file
-        writeInotherfile(fileName, outputFile);
+        writeInOtherfile(fileName, outputFile);
 
 
     }
