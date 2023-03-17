@@ -48,14 +48,17 @@ public class FileManipulation {
             throw new RuntimeException(e);
         }
 
-        System.out.println("Please enter the value");
+
         Scanner write = new Scanner(System.in);
+
         HashMap<String, Integer> infoMap = new HashMap<>();
-        System.out.println("Write in the file");
+
+        System.out.println("Enter the number of entries you want");
+        int numberOFEntries = write.nextInt();
 
         //input in map
         for (int indexofInformation = 1; indexofInformation <= 2; indexofInformation++) {
-            System.out.print("Enter name" + indexofInformation + ":");
+            System.out.print("Enter First name only " + indexofInformation + ":");
             String key = write.next();
             System.out.print("Enter age " + indexofInformation + ":");
             int value = write.nextInt();
@@ -94,7 +97,7 @@ public class FileManipulation {
         String line;
 
         try {
-            //logic to get the age form the file and convert it into integer and then calculating average
+            //logic to  the age form the file and convert it into integer and then calculating average
             while ((line = bufferedReader.readLine()) != null) {
                 String[] result = line.split(",");
                 String age = "";
@@ -132,7 +135,7 @@ public class FileManipulation {
             while ((line = bufferedReader.readLine()) != null) {
                 line = line.replaceAll(",", "(");
                 line = line.concat(")");
-                fileWriter.write(line+ "\n");
+                fileWriter.write(line + "\n");
 
             }
             fileWriter.close();
@@ -142,10 +145,7 @@ public class FileManipulation {
     }
 
 
-
-
-
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner readValues = new Scanner(System.in);
 
 
@@ -155,8 +155,7 @@ public class FileManipulation {
 
 
         //avagage calculator
-        System.out.println("avearage of the age"+calculateAvarage(fileName));
-
+        System.out.println("avearage of the age = " + calculateAvarage(fileName));
 
 
         System.out.println("Input the name of the output file");
@@ -165,7 +164,7 @@ public class FileManipulation {
         //Writing in another other file
         writeInotherfile(fileName, outputFile);
 
-        System.out.println("copied data form "+fileName+" manipulated and pasted to "+outputFile);
+        System.out.println("copied data form " + fileName + " manipulated and pasted to " + outputFile);
 
 
     }
